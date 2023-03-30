@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Riconvert</string>
+    <string name="hasil_convert">Hasil Konversi</string>
+    <string name="desc">Aplikasi konversi mata uang Rupiah.</string>
+    <string name="convert">Konversi</string>
+    <string name="header">Konversi Mata Uang</string>
+    <string name="kurs">Kurs Mata Uang</string>
+    <string name="nominal_invalid">Nominal tidak boleh kosong.</string>
+    <string name="masukkan_nominal">Masukkan Nominal</string>
+    <string name="to">To</string>
+    <string name="rupiah">Rupiah</string>
+
+    <string-array name="mataUang">
+        <item>Dollar</item>
+        <item>Euro</item>
+    </string-array>
 </resources>
