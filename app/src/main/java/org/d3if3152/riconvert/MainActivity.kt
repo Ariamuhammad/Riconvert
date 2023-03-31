@@ -18,13 +18,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.button.setOnClickListener { hitungKonversi() }
-
+        binding.buttonReset.setOnClickListener { resetNominal() }
 
     }
 
+    private fun resetNominal() {
+        binding.nominal.setText(null)
+        binding.hasilConvert.setText(null)
+    }
 
-
-    @SuppressLint("StringFormatInvalid")
     private fun hitungKonversi(){
         val rupiah = binding.nominal.text.toString()
 
@@ -37,15 +39,12 @@ class MainActivity : AppCompatActivity() {
             val dollarRp = 15059
             val hasil = rupiah.toFloat() / dollarRp
             binding.hasilConvert.text = NumberFormat.getCurrencyInstance(Locale.US).format(hasil)
-            binding.kurs.text = getString(R.string.kurs, dollarRp)
+
         }else if(selectedValue == "Euro"){
             val euroRp = 16371
             val hasil = rupiah.toFloat() / euroRp
-            binding.hasilConvert.text = NumberFormat.getCurrencyInstance(Locale.GERMANY).format(hasil);
-            binding.kurs.text = getString(R.string.kurs, euroRp)
+            binding.hasilConvert.text = NumberFormat.getCurrencyInstance(Locale.GERMANY).format(hasil)
+
         }
-
-
-
     }
 }
