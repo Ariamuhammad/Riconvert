@@ -60,10 +60,12 @@
     <TextView
         android:id="@+id/hasilConvert"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="24dp"
-        android:text="@string/hasil_convert"
+        android:paddingTop="5dp"
+        android:background="@color/green_400"
         android:textSize="20sp"
+        android:textColor="@color/white"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/nominal_hint"
         app:layout_constraintStart_toStartOf="@+id/nominal_hint"
@@ -81,35 +83,38 @@
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
         <Spinner
-        android:id="@+id/uang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:entries="@array/mataUang"
-        app:layout_constraintEnd_toEndOf="@+id/desc"
-        app:layout_constraintTop_toBottomOf="@+id/desc" />
+            android:id="@+id/uang"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
+            android:entries="@array/mataUang"
+            app:layout_constraintEnd_toEndOf="@+id/desc"
+            app:layout_constraintTop_toBottomOf="@+id/desc" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/to"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/uang"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/desc" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/rupiah"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/desc"
-        app:layout_constraintTop_toBottomOf="@+id/desc" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:text="@string/to"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintEnd_toStartOf="@+id/uang"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/desc" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/rupiah"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/uang"
+            app:layout_constraintStart_toStartOf="@+id/desc"
+            app:layout_constraintTop_toBottomOf="@+id/desc" />
 
         <Button
             android:id="@+id/buttonReset"
@@ -120,6 +125,7 @@
             app:layout_constraintEnd_toEndOf="@+id/button"
             app:layout_constraintStart_toStartOf="@+id/button"
             app:layout_constraintTop_toBottomOf="@+id/button" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

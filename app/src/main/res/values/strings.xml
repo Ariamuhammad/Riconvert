@@ -6,9 +6,10 @@
     <string name="header">Konversi Mata Uang</string>
     <string name="nominal_invalid">Nominal tidak boleh kosong.</string>
     <string name="masukkan_nominal">Masukkan Nominal</string>
-    <string name="to">To</string>
+    <string name="to">to</string>
     <string name="rupiah">Rupiah</string>
     <string name="resetNominal">RESET</string>
+    <string name="konvert">Konvert</string>
 
     <string-array name="mataUang">
         <item>Dollar</item>
