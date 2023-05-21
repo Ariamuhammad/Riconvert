@@ -1,25 +1,36 @@
 package org.d3if3152.riconvert
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import org.d3if3152.riconvert.databinding.ActivityMainBinding
-import java.text.NumberFormat
-import java.util.*
+import org.d3if3152.riconvert.model.HasilKonversi
+import org.d3if3152.riconvert.ui.KursViewModel
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: KursViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.button.setOnClickListener { hitungKonversi() }
-        binding.buttonReset.setOnClickListener { resetNominal() }
+        viewModel = ViewModelProvider(this).get(KursViewModel::class.java)
 
+        binding.button.setOnClickListener { convertCurrency() }
+        binding.buttonReset.setOnClickListener { resetNominal() }
+        viewModel.getHasilKonversi().observe(this, {showResult(it)})
+    }
+
+    private fun showResult(result: HasilKonversi?) {
+        if (result == null) return
+
+        binding.hasilConvert.text = getString(R.string.hasil_convert, result.hasil)
     }
 
     private fun resetNominal() {
@@ -27,24 +38,17 @@ class MainActivity : AppCompatActivity() {
         binding.hasilConvert.setText(null)
     }
 
-    private fun hitungKonversi(){
-        val rupiah = binding.nominal.text.toString()
+    private fun convertCurrency() {
+        val nominal = binding.nominal.text.toString()
+        val selectedCurrency = binding.uang.selectedItem.toString()
 
-        if (TextUtils.isEmpty(rupiah)) {
+        if (TextUtils.isEmpty(nominal)) {
             Toast.makeText(this, R.string.nominal_invalid, Toast.LENGTH_LONG).show()
             return
         }
-        val selectedValue = binding.uang.selectedItem.toString()
-        if(selectedValue == "Dollar"){
-            val dollarRp = 15059
-            val hasil = rupiah.toFloat() / dollarRp
-            binding.hasilConvert.text = NumberFormat.getCurrencyInstance(Locale.US).format(hasil)
 
-        }else if(selectedValue == "Euro"){
-            val euroRp = 16371
-            val hasil = rupiah.toFloat() / euroRp
-            binding.hasilConvert.text = NumberFormat.getCurrencyInstance(Locale.GERMANY).format(hasil)
-
-        }
+        viewModel.convertCurrency(
+            nominal, selectedCurrency
+        )
     }
 }
