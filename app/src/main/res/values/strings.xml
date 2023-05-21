@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Riconvert</string>
-    <string name="hasil_convert">%1$.2f</string>
+    <string name="hasil_convert">Hasil</string>
+    <string name="formatKonversi">%1$.2f</string>
     <string name="desc">Aplikasi konversi mata uang Rupiah.</string>
     <string name="convert">Konversi</string>
     <string name="header">Konversi Mata Uang</string>
@@ -11,6 +12,7 @@
     <string name="resetNominal">RESET</string>
     <string name="konvert">Konvert</string>
     <string name="lihatKurs">LIHAT KURS</string>
+    <string name="copyright">Aplikasi Konversi Mata Uang Rupiah adalah sebuah aplikasi Android yang memungkinkan pengguna untuk mengkonversi nilai mata uang Rupiah ke Dollar atau Euro. Aplikasi ini dirancang untuk memberikan kemudahan dalam melakukan konversi mata uang secara akurat dan efisien. \n\nAplikasi ini dibuat untuk memenuhi tugas kelas Mobpro 1. \n\nCopyright © 2023 Aria Muhammad Luthfi.\nAll rights reserved.</string>
 
     <string-array name="mataUang">
         <item>Dollar</item>

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import org.d3if3152.riconvert.model.HasilKonversi
 import org.d3if3152.riconvert.model.Kurs
 
-class KursViewModel : ViewModel() {
+class MainViewModel : ViewModel() {
 
     private val hasilKonversi = MutableLiveData<HasilKonversi?>()
 
