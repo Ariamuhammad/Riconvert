@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/hitungFragment">
+
+    <fragment
+        android:id="@+id/hitungFragment"
+        android:name="org.d3if3152.riconvert.ui.HitungFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_hitung" >
+        <action
+            android:id="@+id/action_hitungFragment_to_kursFragment"
+            app:destination="@id/kursFragment" />
+        <action
+            android:id="@+id/action_hitungFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kursFragment"
+        android:name="org.d3if3152.riconvert.ui.KursFragment"
+        tools:layout="@layout/fragment_kurs" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="org.d3if3152.riconvert.ui.AboutFragment"
+        tools:layout="@layout/fragment_about" />
+</navigation>

@@ -2,16 +2,14 @@ package org.d3if3152.riconvert.ui
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import org.d3if3152.riconvert.R
 import org.d3if3152.riconvert.databinding.FragmentHitungBinding
 import org.d3if3152.riconvert.model.HasilKonversi
-
 
 class HitungFragment : Fragment() {
     private lateinit var binding: FragmentHitungBinding
@@ -20,28 +18,51 @@ class HitungFragment : Fragment() {
         ViewModelProvider(requireActivity())[MainViewModel::class.java]
     }
 
-    override fun  onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                               savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHitungBinding.inflate(layoutInflater, container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.button.setOnClickListener { convertCurrency() }
         binding.buttonReset.setOnClickListener { resetNominal() }
-        viewModel.getHasilKonversi().observe(requireActivity(), {showResult(it)})
+
+        viewModel.getHasilKonversi().observe(viewLifecycleOwner, { hasilKonversi ->
+            showResult(hasilKonversi)
+        })
+
+        binding.buttonKursView.setOnClickListener {
+            findNavController().navigate(R.id.action_hitungFragment_to_kursFragment)
+        }
     }
 
-
-    private fun showResult(result: HasilKonversi?) {
-        if (result == null) return
-
-        binding.hasilConvert.text = getString(R.string.formatKonversi, result.hasil)
+    private fun showResult(hasilKonversi: HasilKonversi?) {
+        if (hasilKonversi != null) {
+            binding.hasilConvert.text = getString(R.string.formatKonversi, hasilKonversi.hasil)
+            binding.buttonGroup.visibility = View.VISIBLE
+        } else {
+            binding.buttonGroup.visibility = View.GONE
+        }
     }
 
     private fun resetNominal() {
         binding.nominal.setText(null)
         binding.hasilConvert.setText(null)
+        binding.buttonGroup.visibility = View.GONE
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_about) {
+            findNavController().navigate(
+                R.id.action_hitungFragment_to_aboutFragment)
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun convertCurrency() {
@@ -53,8 +74,7 @@ class HitungFragment : Fragment() {
             return
         }
 
-        viewModel.convertCurrency(
-            nominal, selectedCurrency
-        )
+        viewModel.convertCurrency(nominal, selectedCurrency)
     }
 }
+
