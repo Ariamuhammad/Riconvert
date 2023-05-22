@@ -69,7 +69,7 @@ class HistoriAdapter() :
 //            circleBg.setColor(ContextCompat.getColor(root.context, colorRes))
             tanggalTextView.text = dateFormatter.format(Date(item.tanggal))
             kursTextView.text = root.context.getString(R.string.kurs_x,
-                hasilKonversi.hasil, hasilKonversi.hasil.toString())
+                item.nominal.toFloat(), item.selectedCurrency.toString())
             hasilTextView.text = root.context.getString(R.string.hasil_x,
                 hasilKonversi.hasil)
         }

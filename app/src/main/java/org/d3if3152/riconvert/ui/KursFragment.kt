@@ -51,11 +51,11 @@ class KursFragment : Fragment() {
         when (kurs.name) {
             "Dollar" -> {
                 binding.imageView.setImageResource(R.drawable.dollar)
-                binding.kursDollarNow.text = kurs.rate.toString()
+                binding.kursDollarNow.setText(R.string.kurs_dollar)
             }
             "Euro" -> {
                 binding.imageView.setImageResource(R.drawable.euro)
-                binding.kursDollarNow.text = kurs.rate.toString()
+                binding.kursDollarNow.setText(R.string.kurs_euro)
             }
             else -> {
 
