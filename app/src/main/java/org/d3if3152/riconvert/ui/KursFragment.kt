@@ -1,6 +1,7 @@
 package org.d3if3152.riconvert.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,31 +10,28 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import org.d3if3152.riconvert.R
 import org.d3if3152.riconvert.databinding.FragmentKursBinding
+import org.d3if3152.riconvert.db.KonversiDb
 import org.d3if3152.riconvert.model.Kurs
+import org.d3if3152.riconvert.ui.histori.HistoriViewModel
+import org.d3if3152.riconvert.ui.histori.HistoriViewModelFactory
+import org.d3if3152.riconvert.ui.hitung.HitungViewModelFactory
 
 class KursFragment : Fragment() {
     private lateinit var binding: FragmentKursBinding
-    private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(requireActivity())[MainViewModel::class.java]
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentKursBinding.inflate(inflater, container, false)
+        binding = FragmentKursBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val selectedCurrency = viewModel.getSelectedCurrency().value ?: "Dollar"
+        val selectedCurrency = arguments?.getString("kurs") ?: "Dollar";
+        Log.d("Kurs Fragment", selectedCurrency)
         val kurs = createKursObject(selectedCurrency)
         updateUI(kurs)
-
-        viewModel.getSelectedCurrency().observe(viewLifecycleOwner, { currency ->
-            val kurs = createKursObject(currency)
-            updateUI(kurs)
-        })
     }
 
     private fun createKursObject(currency: String): Kurs {
@@ -46,6 +44,7 @@ class KursFragment : Fragment() {
 
 
     private fun updateUI(kurs: Kurs) {
+
         val actionBar = (requireActivity() as AppCompatActivity).supportActionBar
         actionBar?.title = "Kurs ${kurs.name}"
 

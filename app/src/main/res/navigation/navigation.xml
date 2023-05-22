@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/hitungFragment"
-        android:name="org.d3if3152.riconvert.ui.HitungFragment"
+        android:name="org.d3if3152.riconvert.ui.hitung.HitungFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_hitung" >
         <action
@@ -16,13 +16,25 @@
         <action
             android:id="@+id/action_hitungFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_hitungFragment_to_historiFragment"
+            app:destination="@id/historiFragment" />
     </fragment>
     <fragment
         android:id="@+id/kursFragment"
         android:name="org.d3if3152.riconvert.ui.KursFragment"
-        tools:layout="@layout/fragment_kurs" />
+        tools:layout="@layout/fragment_kurs">
+        <action
+            android:id="@+id/action_kursFragment_to_hitungFragment"
+            app:destination="@id/hitungFragment" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="org.d3if3152.riconvert.ui.AboutFragment"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/historiFragment"
+        android:name="org.d3if3152.riconvert.ui.histori.HistoriFragment"
+        android:label="@string/histori"
+        tools:layout="@layout/fragment_histori" />
 </navigation>

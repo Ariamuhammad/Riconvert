@@ -1,22 +1,29 @@
-package org.d3if3152.riconvert.ui
+package org.d3if3152.riconvert.ui.hitung
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import org.d3if3152.riconvert.R
 import org.d3if3152.riconvert.databinding.FragmentHitungBinding
+import org.d3if3152.riconvert.db.KonversiDb
 import org.d3if3152.riconvert.model.HasilKonversi
+import org.d3if3152.riconvert.ui.MainViewModel
 
 class HitungFragment : Fragment() {
     private lateinit var binding: FragmentHitungBinding
 
     private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(requireActivity())[MainViewModel::class.java]
+        val db = KonversiDb.getInstance(requireContext())
+        val factory = HitungViewModelFactory(db.dao)
+        ViewModelProvider(this,factory)[MainViewModel::class.java]
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -32,10 +39,12 @@ class HitungFragment : Fragment() {
         viewModel.getHasilKonversi().observe(viewLifecycleOwner, { hasilKonversi ->
             showResult(hasilKonversi)
         })
+
         binding.buttonShare.setOnClickListener { shareData() }
 
         binding.buttonKursView.setOnClickListener {
-            findNavController().navigate(R.id.action_hitungFragment_to_kursFragment)
+            val kurs = binding.uang.selectedItem.toString();
+            Navigation.findNavController(view).navigate(R.id.action_hitungFragment_to_kursFragment, bundleOf("kurs" to kurs))
         }
     }
 
@@ -76,11 +85,18 @@ class HitungFragment : Fragment() {
         inflater.inflate(R.menu.options_menu, menu)
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_about) {
+        when(item.itemId) {
+            R.id.menu_histori -> {
+                findNavController().navigate(R.id.action_hitungFragment_to_historiFragment)
+                return false
+            }
+            R.id.menu_about -> {
             findNavController().navigate(
-                R.id.action_hitungFragment_to_aboutFragment)
+                R.id.action_hitungFragment_to_aboutFragment
+            )
             return true
         }
+    }
         return super.onOptionsItemSelected(item)
     }
 
