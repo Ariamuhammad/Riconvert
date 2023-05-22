@@ -7,11 +7,17 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.datastore.dataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import org.d3if3152.riconvert.R
+import org.d3if3152.riconvert.data.SettingsDataStore
+import org.d3if3152.riconvert.data.dataStore
 import org.d3if3152.riconvert.databinding.FragmentHitungBinding
 import org.d3if3152.riconvert.db.KonversiDb
 import org.d3if3152.riconvert.model.HasilKonversi
@@ -19,6 +25,10 @@ import org.d3if3152.riconvert.ui.MainViewModel
 
 class HitungFragment : Fragment() {
     private lateinit var binding: FragmentHitungBinding
+
+    private val dollarDataStore: SettingsDataStore by lazy {
+        SettingsDataStore(requireContext().dataStore)
+    }
 
     private val viewModel: MainViewModel by lazy {
         val db = KonversiDb.getInstance(requireContext())
@@ -36,6 +46,10 @@ class HitungFragment : Fragment() {
         binding.button.setOnClickListener { convertCurrency() }
         binding.buttonReset.setOnClickListener { resetNominal() }
 
+        dollarDataStore.preferenceFlow.asLiveData().observe(viewLifecycleOwner){
+           binding.uang.setSelection(if(it == true) 0 else 1)
+        }
+
         viewModel.getHasilKonversi().observe(viewLifecycleOwner, { hasilKonversi ->
             showResult(hasilKonversi)
         })
@@ -43,7 +57,12 @@ class HitungFragment : Fragment() {
         binding.buttonShare.setOnClickListener { shareData() }
 
         binding.buttonKursView.setOnClickListener {
+            val isDollar = binding.uang.selectedItem == 0;
+
             val kurs = binding.uang.selectedItem.toString();
+            lifecycleScope.launch {
+                dollarDataStore.saveKurs(isDollar, view.context)
+            }
             Navigation.findNavController(view).navigate(R.id.action_hitungFragment_to_kursFragment, bundleOf("kurs" to kurs))
         }
     }
