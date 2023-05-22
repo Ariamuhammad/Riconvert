@@ -16,12 +16,13 @@
     <string name="lihatKurs">LIHAT KURS</string>
     <string name="copyright">Aplikasi Konversi Mata Uang Rupiah adalah sebuah aplikasi Android yang memungkinkan pengguna untuk mengkonversi nilai mata uang Rupiah ke Dollar atau Euro. Aplikasi ini dirancang untuk memberikan kemudahan dalam melakukan konversi mata uang secara akurat dan efisien. \n\nAplikasi ini dibuat untuk memenuhi tugas kelas Mobpro 1. \n\nCopyright © 2023 Aria Muhammad Luthfi.\nAll rights reserved.</string>
 
-
+    <string name="share">BAGIKAN</string>
 
     <string name="kurs_dollar">Kurs Dollar saat ini \n\n1 Dolar Amerika Serikat sama dengan 14.936,00 Rupiah</string>
     <string name="kurs_euro">Kurs Euro saat ini</string>
     <string name="dollar_desc">Dollar</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="bagikan_template">Mata Uang: %1$s \nNominal Rupiah: %2$s </string>
 
     <string-array name="mataUang">
         <item>Dollar</item>

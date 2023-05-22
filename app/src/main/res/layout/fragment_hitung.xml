@@ -138,17 +138,28 @@
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/green_700"
             android:text="@string/lihatKurs"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonReset" />
+
+        <Button
+            android:id="@+id/buttonShare"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/green_700"
+            android:text="@string/share"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonKursView" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/buttonGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible"
-            app:constraint_referenced_ids="buttonKursView"
+            app:constraint_referenced_ids="buttonKursView,buttonShare"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

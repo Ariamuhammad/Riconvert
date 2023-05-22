@@ -1,5 +1,6 @@
 package org.d3if3152.riconvert.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
@@ -31,6 +32,7 @@ class HitungFragment : Fragment() {
         viewModel.getHasilKonversi().observe(viewLifecycleOwner, { hasilKonversi ->
             showResult(hasilKonversi)
         })
+        binding.buttonShare.setOnClickListener { shareData() }
 
         binding.buttonKursView.setOnClickListener {
             findNavController().navigate(R.id.action_hitungFragment_to_kursFragment)
@@ -45,6 +47,23 @@ class HitungFragment : Fragment() {
             binding.buttonGroup.visibility = View.GONE
         }
     }
+
+    private fun shareData() {
+        val selectedId = binding.uang.selectedItem
+
+        val message = getString(R.string.bagikan_template,
+            selectedId,
+            binding.nominal.text
+        )
+
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.setType("text/plain").putExtra(Intent.EXTRA_TEXT, message)
+        if (shareIntent.resolveActivity(
+                requireActivity().packageManager) != null) {
+            startActivity(shareIntent)
+        }
+    }
+
 
     private fun resetNominal() {
         binding.nominal.setText(null)
