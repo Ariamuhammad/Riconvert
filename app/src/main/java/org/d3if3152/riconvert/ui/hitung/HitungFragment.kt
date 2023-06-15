@@ -105,6 +105,10 @@ class HitungFragment : Fragment() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
+            R.id.menu_uang -> {
+                findNavController().navigate(R.id.action_hitungFragment_to_matauangFragment)
+                return false
+            }
             R.id.menu_histori -> {
                 findNavController().navigate(R.id.action_hitungFragment_to_historiFragment)
                 return false

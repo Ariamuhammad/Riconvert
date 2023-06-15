@@ -1,15 +1,10 @@
 package org.d3if3152.riconvert.ui.histori
 
 import android.content.Context
-import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.CoroutineScope
@@ -20,8 +15,6 @@ import org.d3if3152.riconvert.R
 import org.d3if3152.riconvert.databinding.ItemHistoriBinding
 import org.d3if3152.riconvert.db.KonversiDb
 import org.d3if3152.riconvert.db.KonversiEntity
-import org.d3if3152.riconvert.model.HasilKonversi
-import org.d3if3152.riconvert.model.Kurs
 import org.d3if3152.riconvert.model.convertCurrency
 import java.text.SimpleDateFormat
 import java.util.*
@@ -60,13 +53,7 @@ class HistoriAdapter() :
             binding.buttonHapusData.setOnClickListener {
                 hapusData(item.id, binding.root.context)
             }
-//            val circleBg = kursTextView.background as GradientDrawable
-            val colorRes = when(Kurs(name = "Dollar", rate = 15059f)) {
-                Kurs("Dollar", 15059f) -> R.color.dollar
-                Kurs("Euro", 16371f) -> R.color.euro
-                else -> R.color.dollar
-            }
-//            circleBg.setColor(ContextCompat.getColor(root.context, colorRes))
+
             tanggalTextView.text = dateFormatter.format(Date(item.tanggal))
             kursTextView.text = root.context.getString(R.string.kurs_x,
                 item.nominal.toFloat(), item.selectedCurrency.toString())

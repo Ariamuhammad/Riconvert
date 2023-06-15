@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_hitungFragment_to_historiFragment"
             app:destination="@id/historiFragment" />
+        <action
+            android:id="@+id/action_hitungFragment_to_matauangFragment"
+            app:destination="@id/matauangFragment" />
     </fragment>
     <fragment
         android:id="@+id/kursFragment"
@@ -37,4 +40,9 @@
         android:name="org.d3if3152.riconvert.ui.histori.HistoriFragment"
         android:label="@string/histori"
         tools:layout="@layout/fragment_histori" />
+    <fragment
+        android:id="@+id/matauangFragment"
+        android:name="org.d3if3152.riconvert.ui.matauang.MataUangFragment"
+        android:label="@string/uang"
+        tools:layout="@layout/fragment_uang" />
 </navigation>

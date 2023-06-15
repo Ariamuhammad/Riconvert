@@ -6,6 +6,7 @@
     <string name="convert">Konversi</string>
     <string name="header">Konversi Mata Uang</string>
     <string name="nominal_invalid">Nominal tidak boleh kosong.</string>
+    <string name="message">%1$s diklik!</string>
 
     <string name="masukkan_nominal">Masukkan Nominal</string>
     <string name="to">to</string>
@@ -25,6 +26,7 @@
     <string name="bagikan_template">Mata Uang: %1$s \nNominal Rupiah: %2$s </string>
     <string name="belum_ada_data">Belum ada data</string>
     <string name="histori">Histori</string>
+    <string name="uang">List Mata Uang</string>
 
     <string-array name="mataUang">
         <item>Dollar</item>
@@ -39,4 +41,5 @@
     <string name="batal">Batal</string>
     <string name="buttonHapusData">Hapus</string>
     <string name="konfirmasi_hapus_satu">Konfirmasi Hapus</string>
+    <string name="koneksi_error">Koneksi error</string>
 </resources>
