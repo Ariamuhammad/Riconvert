@@ -38,6 +38,4 @@ class MainViewModel(private val db: KonversiDao) : ViewModel() {
 
 
     fun getHasilKonversi(): LiveData<HasilKonversi?> = hasilKonversi
-
-    fun getCurrencies(): List<Kurs> = currencies
 }

@@ -28,14 +28,14 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="Angsa" />
+            tools:text="Mata Uang" />
 
         <TextView
             android:id="@+id/uangTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="italic"
-            tools:text="Cygnus olor" />
+            tools:text="Kurs saat ini" />
 
     </LinearLayout>
 
